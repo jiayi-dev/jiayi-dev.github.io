@@ -3,25 +3,12 @@
  */
 import React, { useState } from 'react';
 import {DATA} from './data/resume';
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@radix-ui/react-accordion";
+import { TimelineNode } from "./components/timeline-node";
 
 const App: React.FC = () => {
-    const progress = 10;
     return (
         <div>
-            <div className="min-h-screen flex justify-center items-center bg-stone-900">
-                <div className="w-full max-w-lg p-6 bg-yellow-100 rounded-lg shadow-md text-center">
-                    <h1 className="text-3xl font-bold text-yellow-800 mb-4">🚧Under Construction🚧</h1>
-                    <p className="text-xl text-yellow-700 mb-4">Project is under construction.</p>
-                    <p className="text-xl text-yellow-700">Progress: {progress}%</p>
-
-                    <div className="w-full bg-gray-300 rounded-full h-2.5 mt-4">
-                        <div
-                            className={`bg-green-500 h-2.5 rounded-full`}
-                            style={{width: `${progress}%`}}
-                        ></div>
-                    </div>
-                </div>
-            </div>
             <div className="flex flex-col items-center min-h-screen">
                 <section className="hero">
                     Hi, I'm {DATA.name} 👋
@@ -33,24 +20,57 @@ const App: React.FC = () => {
                 </section>
                 <section className="work">
                     <span className="font-bold">Work Experience</span>
-                    {DATA.work.map((work, id) => (
-                        <div key={id}>
-                            <span className="font-bold">{work.company}</span>
-                            <span>{work.title}</span>
-                            <span>{work.start} - {work.end}</span>
-                            {work.description}
-                        </div>
-                    ))}
+                    <div className="space-y-8">
+                        {DATA.work.map((item, index) => (
+                            <Accordion key={index} type="single" collapsible>
+                                <AccordionItem value={`item-${index}`} className="border-0">
+                                    <TimelineNode
+                                        url={item.logoUrl}
+                                        alt={item.company}
+                                        year={item.date}
+                                        title={item.title}
+                                        isLast={index === DATA.work.length - 1}
+                                    >
+                                        <AccordionTrigger className="hover:no-underline pt-2">
+                <span className="text-sm underline-offset-4 hover:underline">
+                  Show Details
+                </span>
+                                        </AccordionTrigger>
+                                        <AccordionContent className="pt-2">
+                                            {item.description}
+                                        </AccordionContent>
+                                    </TimelineNode>
+                                </AccordionItem>
+                            </Accordion>
+                        ))}
+                    </div>
                 </section>
                 <section className="education">
-                    <span>Education</span>
-                    {DATA.education.map((education, id) => (
-                        <div key={id}>
-                            <span className="font-bold">{education.school}</span>
-                            <span>{education.degree}</span>
-                            <span>{education.start} - {education.end}</span>
-                        </div>
-                    ))}
+                    <span className="font-bold">Education</span>
+                    <div className="space-y-8">
+                    {DATA.education.map((item, index) => (
+                            <Accordion key={index} type="single" collapsible>
+                                <AccordionItem value={`item-${index}`} className="border-0">
+                                    <TimelineNode
+                                        url={item.logoUrl}
+                                        alt={item.school}
+                                        year={item.date}
+                                        title={item.school}
+                                        isLast={index === DATA.education.length - 1}
+                                    >
+                                        <AccordionTrigger className="hover:no-underline pt-2">
+                <span className="text-sm underline-offset-4 hover:underline">
+                  Show Details
+                </span>
+                                        </AccordionTrigger>
+                                        <AccordionContent className="pt-2">
+                                            {item.degree}
+                                        </AccordionContent>
+                                    </TimelineNode>
+                                </AccordionItem>
+                            </Accordion>
+                        ))}
+                    </div>
                 </section>
                 <section className="skills">
                     <span>Skills</span>
