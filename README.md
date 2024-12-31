@@ -3,7 +3,7 @@
 <img width="503" alt="Screenshot 2024-12-30 at 22 48 11" src="https://github.com/user-attachments/assets/5a48c84a-3cc0-49da-967d-46bce7de3708" />
 
 ### Preview
-<img width="842" alt="Screenshot 2024-12-30 at 22 50 00" src="https://github.com/user-attachments/assets/b92d4a22-1b09-439e-91d9-56f4fd5d6f92" />
+<img width="803" alt="Screenshot 2024-12-30 at 23 05 39" src="https://github.com/user-attachments/assets/141087b4-9b34-45bb-b398-f36478c70373" />
 
 This is a dynamic CV website built with TypeScript. All content and data for the CV are sourced from the `resume.ts` file under the `data` directory. To get started, you can follow the steps below to customize and deploy your CV.
 
